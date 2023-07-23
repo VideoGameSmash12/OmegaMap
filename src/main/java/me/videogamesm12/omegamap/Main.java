@@ -18,7 +18,7 @@ public class Main
 
     public static void main(String[] args) throws SQLException
     {
-        LogUtil.info("-- == ΩmegaΜap v1.0 == --");
+        LogUtil.info("-- == ΩmegaΜap v1.1 == --");
         LogUtil.info("Written by videogamesm12 and Alco_Rs11");
 
         OMConfig.setup();
@@ -53,6 +53,7 @@ public class Main
 
         try
         {
+            LogUtil.info("Preparing to generate heatmap");
             generateHeatMap(config.getRendering().getImageRadiusHorizontal(), config.getRendering().getImageRadiusVertical());
             LogUtil.info("Successfully generated the heatmap!");
         }
@@ -86,14 +87,8 @@ public class Main
         final int incrementColor = OMConfig.getInstance().getRendering().getIncrementColor();
 
         LogUtil.info("Building image");
-        int i = 0;
         while (set.next())
         {
-            if (++i % 1000000 == 0)
-            {
-                System.out.println(i);
-            }
-
             int posX = set.getInt(1);
             int posY = set.getInt(2);
 
