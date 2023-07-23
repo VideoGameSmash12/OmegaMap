@@ -81,7 +81,8 @@ public class OMConfig
     @Getter
     public static class Render
     {
-        private int imageRadius = 5000;
+        private int imageRadiusHorizontal = 5000;
+        private int imageRadiusVertical = 5000;
 
         private int scale = 16;
 
