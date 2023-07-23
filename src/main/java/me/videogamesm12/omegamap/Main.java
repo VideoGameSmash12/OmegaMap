@@ -53,7 +53,7 @@ public class Main
 
         try
         {
-            generateHeatMap(config.getRendering().getImageRadius());
+            generateHeatMap(config.getRendering().getImageRadiusHorizontal(), config.getRendering().getImageRadiusVertical());
             LogUtil.info("Successfully generated the heatmap!");
         }
         catch (Throwable ex)
@@ -67,7 +67,7 @@ public class Main
         LogUtil.info("Shutdown completed, have a nice day!");
     }
 
-    public static void generateHeatMap(int radius) throws SQLException, IOException
+    public static void generateHeatMap(int radiusHorizontal, int radiusVertical) throws SQLException, IOException
     {
         // Get the data first
         LogUtil.info("Sending SQL query for data...");
@@ -76,7 +76,7 @@ public class Main
         LogUtil.info("Query completed");
         //--
         LogUtil.info("Building image foundation");
-        final BufferedImage output = new BufferedImage(radius * 2, radius * 2, BufferedImage.TYPE_BYTE_GRAY);
+        final BufferedImage output = new BufferedImage(radiusHorizontal * 2, radiusVertical * 2, BufferedImage.TYPE_BYTE_GRAY);
         final WritableRaster raster = output.getRaster();
         final SampleModel model = raster.getSampleModel();
         final DataBuffer buffer = raster.getDataBuffer();
@@ -100,10 +100,10 @@ public class Main
             int chunkX = ((Double) Math.floor((double) posX / scale)).intValue();
             int chunkY = ((Double) Math.floor((double) posY / scale)).intValue();
 
-            int imageX = chunkX + radius;
-            int imageY = chunkY + radius;
+            int imageX = chunkX + radiusHorizontal;
+            int imageY = chunkY + radiusVertical;
 
-            if (imageX < 0 || imageX >= 2 * radius || imageY < 0 || imageY >= 2 * radius)
+            if (imageX < 0 || imageX >= 2 * radiusHorizontal || imageY < 0 || imageY >= 2 * radiusVertical)
             {
                 // Code commented out because it slowed things down significantly
                 //LogUtil.info("Coordinate set (" + posX + ", " + posY + ") was not drawn because it is outside of the radius even with the scale (" + imageX + ", " + imageY + ")");
