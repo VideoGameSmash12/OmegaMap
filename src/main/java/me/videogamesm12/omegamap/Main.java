@@ -18,7 +18,7 @@ public class Main
 
     public static void main(String[] args) throws SQLException
     {
-        LogUtil.info("-- == ΩmegaΜap v1.1 == --");
+        LogUtil.info("-- == ΩmegaΜap v1.2 == --");
         LogUtil.info("Written by videogamesm12 and Alco_Rs11");
 
         OMConfig.setup();
@@ -31,9 +31,10 @@ public class Main
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
                     String.format(
-                            "jdbc:postgresql://%s:%s/omegatrack",
+                            "jdbc:postgresql://%s:%s/%s",
                             config.getSql().getServerAddress(),
-                            config.getSql().getServerPort()
+                            config.getSql().getServerPort(),
+                            config.getSql().getServerDatabase()
                     ),
                     config.getSql().getUsername(),
                     config.getSql().getPassword());
@@ -101,7 +102,7 @@ public class Main
             if (imageX < 0 || imageX >= 2 * radiusHorizontal || imageY < 0 || imageY >= 2 * radiusVertical)
             {
                 // Code commented out because it slowed things down significantly
-                //LogUtil.info("Coordinate set (" + posX + ", " + posY + ") was not drawn because it is outside of the radius even with the scale (" + imageX + ", " + imageY + ")");
+                //LogUtil.info("Coordinate set (" + posX + ", " + posY + ") was not drawn because it is outside the radius even with the scale (" + imageX + ", " + imageY + ")");
                 continue;
             }
 

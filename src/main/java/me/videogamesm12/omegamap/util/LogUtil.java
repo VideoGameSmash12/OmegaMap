@@ -7,6 +7,11 @@ public class LogUtil
 {
     private static final Logger logger = Logger.getLogger("OmegaMap");
 
+    static
+    {
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tT %4$s]: %5$s %n");
+    }
+
     public static void info(String message)
     {
         logger.info(message);

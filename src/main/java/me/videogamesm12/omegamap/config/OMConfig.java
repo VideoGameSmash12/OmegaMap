@@ -73,6 +73,8 @@ public class OMConfig
 
         private int serverPort = 5432;
 
+        private String serverDatabase = "omegatrack";
+
         private String username = "alexandria";
 
         private String password = "alexandria";
@@ -82,6 +84,7 @@ public class OMConfig
     public static class Render
     {
         private int imageRadiusHorizontal = 5000;
+
         private int imageRadiusVertical = 5000;
 
         private int scale = 16;
