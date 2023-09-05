@@ -61,6 +61,7 @@ public class Main
         catch (Throwable ex)
         {
             LogUtil.error("Failed to generate heatmap", ex);
+            ex.printStackTrace();
         }
 
         LogUtil.info("Shutting down SQL connection...");
@@ -73,7 +74,8 @@ public class Main
     {
         // Get the data first
         LogUtil.info("Sending SQL query for data...");
-        final PreparedStatement statement = connection.prepareStatement("SELECT x, z FROM coordinates;");
+        final PreparedStatement statement = connection.prepareStatement("SELECT x, z FROM coordinates WHERE world = ?;");
+        statement.setString(1, OMConfig.getInstance().getSql().getWorld());
         final ResultSet set = statement.executeQuery();
         LogUtil.info("Query completed");
         //--
@@ -125,6 +127,6 @@ public class Main
         }
 
         LogUtil.info("Writing image to disk...");
-        ImageIO.write(output, "png", new File("heatmap_flatlands.png"));
+        ImageIO.write(output, "png", new File("heatmap_" + OMConfig.getInstance().getSql().getWorld().replace("minecraft:", "") + ".png"));
     }
 }

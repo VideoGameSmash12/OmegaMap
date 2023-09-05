@@ -78,6 +78,8 @@ public class OMConfig
         private String username = "alexandria";
 
         private String password = "alexandria";
+
+        private String world = "minecraft:flatlands";
     }
 
     @Getter
