@@ -18,7 +18,7 @@ public class Main
 
     public static void main(String[] args) throws SQLException
     {
-        LogUtil.info("-- == ΩmegaΜap v1.2 == --");
+        LogUtil.info("-- == ΩmegaΜap v1.3 == --");
         LogUtil.info("Written by videogamesm12 and Alco_Rs11");
 
         OMConfig.setup();
